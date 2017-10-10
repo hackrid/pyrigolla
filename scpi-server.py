@@ -19,6 +19,7 @@ Contains code from https://gist.github.com/pklaus/db709c8c1279348e0638
 # Make it work on Python 2 and Python 3:
 try:
     import socketserver
+    import os
 except ImportError:
     import SocketServer as socketserver
 import socket, threading
@@ -72,6 +73,7 @@ class CmdTCPServer(socketserver.ThreadingTCPServer):
             self.log(DEBUG, 'Received a cmd: {}'.format(cmd))
             try:
                 reply = self.server.process(cmd)
+                """self.log(DEBUG, 'reply: {}'.format(reply))"""
                 if reply is not None:
                     self.send_reply(reply)
             except:
@@ -99,11 +101,65 @@ class SCPIServerExample(CmdTCPServer):
         received from the client.
         """
         if cmd.startswith('*IDN?'):
-            return self.name
+            return 'Rigol Technologies,VS5022D,DS1EXXXXXXXXXX,00.02.05.02.00'
+
+
+        if cmd.startswith(':CHAN1:DISP?'):
+            return '0'
+
+        if cmd.startswith(':CHAN2:DISP?'):
+            return '0'
+
+        if cmd.startswith(':LA:DISP?'):
+            return '1'
+
+        if cmd.startswith(':DIG'):
+            return '1'
+
+        if cmd.startswith(':TIM:SCAL?'):
+            return '1e-5'
+
+        if cmd.startswith(':CHAN1:PROB?'):
+            return '1'
+
+        if cmd.startswith(':CHAN2:PROB?'):
+            return '1'
+
+        if cmd.startswith(':CHAN1:SCAL?'):
+            return '1'
+
+        if cmd.startswith(':CHAN2:SCAL?'):
+            return '1'
+
+        if cmd.startswith(':CHAN1:OFFS?'):
+            return '0'
+
+        if cmd.startswith(':CHAN2:OFFS?'):
+            return '0'
+
+
+        if cmd.startswith('*OPC?'):
+            return '1'
+
+        if cmd.startswith(':TRIG:EDGE:SLOP?'):
+            return 'POS'
+
+
+        if cmd.startswith(':WAV:DATA? DIG'):
+            replystring = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4096))
+            return replystring
+
+
+
+
+
+
+
+
         if cmd.startswith('READ?'):
             return '{:+.6E}'.format(random.random())
         else:
-            return 'unknown cmd'
+            return '1'
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[1])

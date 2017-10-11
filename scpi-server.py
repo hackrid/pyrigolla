@@ -20,6 +20,7 @@ Contains code from https://gist.github.com/pklaus/db709c8c1279348e0638
 try:
     import socketserver
     import os
+    import string
 except ImportError:
     import SocketServer as socketserver
 import socket, threading
@@ -73,7 +74,7 @@ class CmdTCPServer(socketserver.ThreadingTCPServer):
             self.log(DEBUG, 'Received a cmd: {}'.format(cmd))
             try:
                 reply = self.server.process(cmd)
-                """self.log(DEBUG, 'reply: {}'.format(reply))"""
+                self.log(DEBUG, 'reply: {}'.format(reply))
                 if reply is not None:
                     self.send_reply(reply)
             except:
@@ -146,14 +147,9 @@ class SCPIServerExample(CmdTCPServer):
 
 
         if cmd.startswith(':WAV:DATA? DIG'):
-            replystring = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4096))
+
+            replystring = str(''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4096)))
             return replystring
-
-
-
-
-
-
 
 
         if cmd.startswith('READ?'):

@@ -120,35 +120,35 @@ class SCPIServerExample(CmdTCPServer):
         if cmd.startswith(':LA:DIG0:DISP?'):
             return '1'
         if cmd.startswith(':LA:DIG1:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG2:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG3:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG4:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG5:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG6:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG7:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG8:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG9:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG10:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG11:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG12:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG13:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG14:DISP?'):
-            return '1'
+            return '0'
         if cmd.startswith(':LA:DIG15:DISP?'):
-            return '1'
+            return '0'
         
         if cmd.startswith(':TIM:SCAL?'):
             return '1e-6'
@@ -187,30 +187,30 @@ class SCPIServerExample(CmdTCPServer):
             return '0'
 
         if cmd.startswith(':RUN'):
-            return ''
+            return
         
         
         if cmd.startswith('*OPC?'):
             return '1'
 
         if cmd.startswith(':ACQ:MDEP 0'):
-            return '0'
+            return
         if cmd.startswith(':ACQ:MDEP 1400'):
-            return '1400'
+            return
     
         if cmd.startswith(':STOP'):
-            return ''
+            return
         
         if cmd.startswith(':WAV:FORM BYTE'):
-            return 'BYTE'
+            return
         
         if cmd.startswith(':WAV:MODE NORM'):
-            return 'NORM'
+            return
         if cmd.startswith(':WAV:MODE RAW'):
-            return 'RAW'
+            return
         
         if cmd.startswith(':WAV:SOUR CHAN1'):
-            return 'CHAN1'
+            return
         
         if cmd.startswith(':WAV:YREF?'):
             return '127'
@@ -220,82 +220,86 @@ class SCPIServerExample(CmdTCPServer):
         
         
         if cmd.startswith(':CHAN1:DISP OFF'):
-            return 'OFF'
+            return
 
         if cmd.startswith(':LA:DIG0:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG1:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG2:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG3:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG4:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG5:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG6:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG7:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG8:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG9:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG10:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG11:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG12:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG13:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG14:DISP OFF'):
-            return 'OFF'
+            return
         if cmd.startswith(':LA:DIG15:DISP OFF'):
-            return 'OFF'
+            return
         
         if cmd.startswith(':LA:DIG0:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG1:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG2:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG3:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG4:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG5:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG6:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG7:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG8:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG9:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG10:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG11:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG12:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG13:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG14:DISP ON'):
-            return 'ON'
+            return
         if cmd.startswith(':LA:DIG15:DISP ON'):
-            return 'ON'
+            return
         
         if cmd.startswith(':LA:STAT OFF'):
             return 'OFF'
         
         if cmd.startswith(':SING'):
-            return ''
+            return
         
         if cmd.startswith(':TRIG:STAT?'):
             return 'STOP'
+        
+        if cmd.startswith('*ESR?'):
+            return '1'
+        
          
         
         if cmd.startswith(':WAV:DATA?'):

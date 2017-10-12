@@ -1,5 +1,5 @@
 # pyrigolla?
-... is a python based SCPI simulation of a Rigol VS5022D meant to interact with sigrok-cli/pulseview....
+... is a python based SCPI simulation of a Rigol MSO2302A meant to interact with sigrok-cli/pulseview....
 
 ## Why?
 In the near future I plan to use an esp32 as a standalone logic analyzer to feed (digital) data into sigrok-cli / pulseview for the use of protocol decoders and further analysis.

@@ -21,6 +21,7 @@ try:
     import socketserver
     import os
     import string
+    import sys
 except ImportError:
     import SocketServer as socketserver
 import socket, threading
@@ -102,7 +103,7 @@ class SCPIServerExample(CmdTCPServer):
         received from the client.
         """
         if cmd.startswith('*IDN?'):
-            return 'Rigol Technologies,VS5022D,DS1EXXXXXXXXXX,00.02.05.02.00'
+            return 'Rigol Technologies,MSO2302A,DS1EXXXXXXXXXX,00.02.05.02.00'
 
 
         if cmd.startswith(':CHAN1:DISP?'):
@@ -110,52 +111,102 @@ class SCPIServerExample(CmdTCPServer):
 
         if cmd.startswith(':CHAN2:DISP?'):
             return '0'
-
-        if cmd.startswith(':LA:DISP?'):
+        
+        
+        if cmd.startswith(':LA:STAT?'):
             return '1'
-
-        if cmd.startswith(':DIG'):
+        
+               
+        if cmd.startswith(':LA:DIG0:DISP?'):
             return '1'
-
+        if cmd.startswith(':LA:DIG1:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG2:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG3:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG4:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG5:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG6:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG7:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG8:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG9:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG10:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG11:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG12:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG13:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG14:DISP?'):
+            return '1'
+        if cmd.startswith(':LA:DIG15:DISP?'):
+            return '1'
+        
         if cmd.startswith(':TIM:SCAL?'):
-            return '1e-5'
-
+            return '1e-6'
+        
+        
         if cmd.startswith(':CHAN1:PROB?'):
             return '1'
-
         if cmd.startswith(':CHAN2:PROB?'):
             return '1'
-
+                
         if cmd.startswith(':CHAN1:SCAL?'):
             return '1'
-
         if cmd.startswith(':CHAN2:SCAL?'):
             return '1'
-
+                
         if cmd.startswith(':CHAN1:OFFS?'):
             return '0'
-
         if cmd.startswith(':CHAN2:OFFS?'):
             return '0'
 
+        if cmd.startswith(':CHAN1:COUP?'):
+            return 'DC'
+        if cmd.startswith(':CHAN2:COUP?'):
+            return 'DC'
+        
+        if cmd.startswith(':TRIG:EDGE:SOUR?'):
+            return 'D0'
 
-        if cmd.startswith('*OPC?'):
-            return '1'
+        if cmd.startswith(':TIM:OFFS?'):
+            return '0'
 
         if cmd.startswith(':TRIG:EDGE:SLOP?'):
             return 'POS'
 
+        if cmd.startswith(':TRIG:EDGE:LEV?'):
+            return '0'
 
-        if cmd.startswith(':WAV:DATA? DIG'):
-
-            replystring = str(''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4096)))
-            return replystring
-
-
-        if cmd.startswith('READ?'):
-            return '{:+.6E}'.format(random.random())
-        else:
+        if cmd.startswith(':RUN'):
+            return ''
+        
+        
+        if cmd.startswith('*OPC?'):
             return '1'
+
+        if cmd.startswith(':ACQ:MDEP 0'):
+            return '0'
+    
+        if cmd.startswith(':STOP'):
+            return ''
+        
+        if cmd.startswith(':WAV:FORM BYTE'):
+            return 'BYTE'
+        
+        if cmd.startswith(':WAV:MODE NORM'):
+            return 'NORM'
+        
+        else:
+            sys.exit(cmd)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[1])

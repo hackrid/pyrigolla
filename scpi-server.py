@@ -107,7 +107,7 @@ class SCPIServerExample(CmdTCPServer):
 
 
         if cmd.startswith(':CHAN1:DISP?'):
-            return '0'
+            return '1'
 
         if cmd.startswith(':CHAN2:DISP?'):
             return '0'
@@ -195,6 +195,8 @@ class SCPIServerExample(CmdTCPServer):
 
         if cmd.startswith(':ACQ:MDEP 0'):
             return '0'
+        if cmd.startswith(':ACQ:MDEP 1400'):
+            return '1400'
     
         if cmd.startswith(':STOP'):
             return ''
@@ -204,7 +206,108 @@ class SCPIServerExample(CmdTCPServer):
         
         if cmd.startswith(':WAV:MODE NORM'):
             return 'NORM'
+        if cmd.startswith(':WAV:MODE RAW'):
+            return 'RAW'
         
+        if cmd.startswith(':WAV:SOUR CHAN1'):
+            return 'CHAN1'
+        
+        if cmd.startswith(':WAV:YREF?'):
+            return '127'
+        
+        if cmd.startswith(':WAV:STAT?'):
+            return 'IDLE,1400'
+        
+        
+        if cmd.startswith(':CHAN1:DISP OFF'):
+            return 'OFF'
+
+        if cmd.startswith(':LA:DIG0:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG1:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG2:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG3:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG4:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG5:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG6:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG7:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG8:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG9:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG10:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG11:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG12:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG13:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG14:DISP OFF'):
+            return 'OFF'
+        if cmd.startswith(':LA:DIG15:DISP OFF'):
+            return 'OFF'
+        
+        if cmd.startswith(':LA:DIG0:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG1:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG2:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG3:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG4:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG5:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG6:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG7:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG8:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG9:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG10:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG11:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG12:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG13:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG14:DISP ON'):
+            return 'ON'
+        if cmd.startswith(':LA:DIG15:DISP ON'):
+            return 'ON'
+        
+        if cmd.startswith(':LA:STAT OFF'):
+            return 'OFF'
+        
+        if cmd.startswith(':SING'):
+            return ''
+        
+        if cmd.startswith(':TRIG:STAT?'):
+            return 'STOP'
+         
+        
+        if cmd.startswith(':WAV:DATA?'):
+            replystring = '#90000014001400'+str(''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4096)))
+            return replystring
+       
+       
+       
+
+        
+
+
         else:
             sys.exit(cmd)
 
